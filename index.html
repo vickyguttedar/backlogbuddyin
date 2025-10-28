@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Engineering Question Papers</title>
+    <style>
+    body {
+        /*
+        Image from: https://media.collegedekho.com/media/img/institute/crawled_images/None/Screenshot_from_2024-06-05_12-39-55.png?width=1080
+        This is a background image for styling purposes.
+        */
+        background-image: url('https://media.collegedekho.com/media/img/institute/crawled_images/None/Screenshot_from_2024-06-05_12-39-55.png?width=1080');
+        background-size: cover;      /* Make it cover the whole screen */
+        background-repeat: no-repeat; /* Don’t repeat */
+        background-position: center;  /* Center the image */
+        background-attachment: fixed; /* Stay fixed when scrolling */
+    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #e8eef5;
+            --bg-secondary: #ffffff;
+            --bg-card: #f8fafc;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --accent-blue: #3b82f6;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --download-btn: #10b981;
+            --download-hover: #059669;
+            --branch-btn-bg: #cbd5e1;
+            --branch-btn-hover: #a0aec0;
+            --branch-btn-active: #3b82f6;
+            --nav-link: #1a202c;
+            --nav-link-hover: #3b82f6;
+        }
+        .dark-mode {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border-color: #475569;
+            --shadow: rgba(0, 0, 0, 0.3);
+            --branch-btn-bg: #475569;
+            --branch-btn-hover: #64748b;
+            --branch-btn-active: #3b82f6;
+            --nav-link: #f1f5f9;
+            --nav-link-hover: #93c5fd;
+        }
+    .hero {
+        text-align: center;
+        padding: 100px 20px;
+    }
+
+    .hero h1 {
+        font-size: 3em;
+        color: var(--text-primary); /* fixed invalid declaration */
+    }
+
+    .hero h1 span {
+        color:var(--accent-blue) ;
+    }
+
+    .hero p {
+        margin-top: 10px;
+        font-size: 1.3em;
+        color: var(--text-secondary); /* fixed invalid declaration */
+    }
+    .hero button {
+        background-color: #f05454;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        margin-top: 20px;
+        animation: blink-grow 1.5s infinite; /* Apply blinking + growing animation */
+        transition: transform 0.3s ease;
+    }
+
+    /* Define the blinking + growing animation */
+    @keyframes blink-grow {
+        0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(1.2); /* Increases the button size */
+        }
+    }
+
+    /* Define the blinking animation */
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s, color 0.3s;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: var(--bg-secondary);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px var(--shadow);
+            position: relative;
+        }
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Top-right nav (contains theme toggle and contact link) */
+        .top-nav {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 10;
+        }
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 999px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            transition: all 0.2s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: transparent;
+            color: var(--nav-link);
+            border-radius: 8px;
+            text-decoration: none;
+            border: 2px solid transparent;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .nav-link:hover {
+            color: var(--nav-link-hover);
+            border-color: var(--border-color);
+            transform: translateY(-2px);
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+        }
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* --- Branch Navigation Styles --- */
+        .branch-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-top: 10px;
+        }
+        .branch-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--branch-btn-bg);
+            color: var(--text-primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        .branch-btn:hover {
+            background-color: var(--branch-btn-hover);
+        }
+        .branch-btn.active {
+            background-color: var(--branch-btn-active);
+            color: white;
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+        }
+        /* --- End New Styles --- */
+
+        .semester-section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px var(--shadow);
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+        }
+        .semester-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .semester-header:hover {
+            background: var(--bg-card);
+        }
+        .semester-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+        .subject-badge {
+            background: var(--accent-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        .toggle-icon.open {
+            transform: rotate(180deg);
+        }
+        .subjects-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .subjects-container.open {
+            max-height: 3000px; /* Increased max-height for large content */
+        }
+        .subject-card {
+            border-top: 1px solid var(--border-color);
+            padding: 15px 25px;
+        }
+        .subject-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+        .subject-name {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .subject-code {
+            background: var(--bg-card);
+            color: var(--accent-blue);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .papers-grid {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-top: 15px;
+        }
+        .papers-grid.open {
+            max-height: 2000px;
+        }
+        .papers-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 15px 0;
+        }
+        .paper-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .paper-card.available {
+            cursor: pointer;
+            border-color: var(--download-btn);
+        }
+        .paper-card.available:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+        .paper-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        .paper-status {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .download-btn {
+            background: var(--download-btn);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .download-btn:hover {
+            background: var(--download-hover);
+            transform: scale(1.05);
+        }
+        .download-btn:disabled {
+            background: var(--text-secondary);
+            cursor: not-allowed;
+            opacity: 0.5;
+            background-color: red; /* This was in your original code */
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .top-nav {
+                position: static;
+                margin: 8px auto 0;
+            }
+            .theme-toggle {
+                margin-left: 0;
+            }
+            .papers-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .semester-header {
+                padding: 15px 20px;
+            }
+            .subject-card {
+                padding: 15px 20px;
+            }
+            .paper-card {
+                padding: 15px;
+            }
+            .paper-title {
+                font-size: 0.9rem;
+            }
+            .download-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            .branch-nav {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .header {
+                padding: 20px 15px;
+            }
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            .semester-title {
+                font-size: 1.1rem;
+            }
+            .papers-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .subject-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .paper-card {
+                padding: 18px;
+            }
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Last Year’s Questions = This Year’s <span>Success.</span></h1>
+        <p>Without backlog, you won't be able to become a good engineer. Just chill and clear with Buddy.</p>
+        <a href="https://chat.whatsapp.com/FTOFUYjQ24EK2iaQnVFokj">
+            <button>join Watsapp Community</button>
+        </a>
+    </section>
+
+    <div class="container">
+        <div class="header">
+            <!-- Top-right navigation: theme toggle + contact placeholder -->
+            <div class="top-nav">
+                <!-- Keep the existing theme-toggle button (id preserved) -->
+                <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+
+                <!-- Contact link placeholder: edit the href to your real contact link (mailto: or page URL) -->
+                <!-- I left id="contactLink" so you can set href later via HTML or JS -->
+                <a id="contactLink" class="nav-link" href="https://chat.whatsapp.com/Dz7b4rZ6brV0DnrSvplNV2" title="Contact">Contact us</a>
+            </div>
+
+            <h1 id="branchTitle">
+                <span>🎓</span>
+                Computer Science & Engineering (CSE)
+            </h1>
+            <p>Browse through semesters and subjects to find the question papers you need.</p>
+
+            <div class="branch-nav">
+                <button class="branch-btn" id="btn-firstyear" onclick="loadBranch('firstyear')">First Year Only</button>
+                <button class="branch-btn active" id="btn-cse" onclick="loadBranch('cse')">CSE</button>
+                <button class="branch-btn" id="btn-ece" onclick="loadBranch('ece')">ECE</button>
+                <button class="branch-btn" id="btn-eee" onclick="loadBranch('eee')">EEE</button>
+            </div>
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" placeholder="Search by semester or subject name..." id="searchInput" onkeyup="searchSubjects()">
+            </div>
+        </div>
+
+        <div id="semestersContainer"></div>
+    </div>
+
+    <script>
+        // --- Data for all branches ---
+        const allBranchesData = {
+            'firstyear': {
+                title: 'Before branch entry (First Year only)',
+                icon: '👶',
+                data: [
+                    { semester: '1st Semester', subjects: [
+                        { name: 'Engineering Mathematics-I', code: '23MAT11', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Programming for Problem Solving', code: '23POP13', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Engineering Physics', code: '23PHY12', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Basic Electronics', code: '23ELN14', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Cyber Security', code: '23CYB15', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Communicative English', code: '23ENG16', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Scientific Foundation Of Health', code: '23SFH18', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '2nd Semester', subjects: [
+                        { name: 'Engineering Mathematics-II', code: '23MAT21', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Basic Electrical Engineering', code: '23ELE24', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Engineering Chemistry', code: '23CHE22', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Computer Aided Engineering Drawing', code: '23CED23', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Introduction To Python', code: '23PYT253', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Indian Constitution', code: '23ICO27', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Innovation & Design Thinking', code: '23IDT28', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Professional Writing Skill In English', code: '23WS26', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]}
+                ]
+            },
+            'cse': {
+                title: 'Computer Science & Engineering (CSE)',
+                icon: '💻',
+                data: [
+                    { semester: '3rd Semester', subjects: [
+                        { name: 'Digital System Design & Computer Organization', code: '23CS32', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Operating Systems', code: '23CS33', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Data Structures & Applications', code: '23CS34', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Object Oriented Programming With Java', code: '23CS36', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Applied Engineering Mathematics-III', code: '23MAT31', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Version Controller With Git', code: '23CS382', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '4th Semester', subjects: [
+                        { name: 'Biology For Engineers', code: '23BB41', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Micro Controllers and Embedded System', code: '23CS42', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Database Management Systems', code: '23CS43', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Analysis and Design of Algorithms', code: '23CS44', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'System Software', code: '23CS461', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Professional Skills for the Work Place', code: '23PSW47', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Universal human values course', code: '23UH48', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '5th Semester', subjects: [
+                        { name: 'Introduction To Artificial Intelligence', code: '23CSE530', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Computer Networks', code: '23CSE520', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Software Engineering and Project Management', code: '23CSE540', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Web Technologies', code: '23CSE510', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Theory of Computation', code: '23CSE551', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Advanced Aptitude', code: '23AAE570', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '6th Semester', subjects: [
+                        { name: 'NA', code: 'CS-501', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'NA', code: 'CS-502', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'NA', code: 'CS-503', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'NA', code: 'CS-504', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'NA', code: 'CS-505', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '7th Semester', subjects: [
+                        { name: 'NA', code: 'CS-601', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'NA', code: 'CS-602', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '8th Semester', subjects: [
+                        { name: 'NA', code: 'CS-701', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]}
+                ]
+            },
+            'ece': {
+                title: 'Electronics and Communication Engineering (ECE)',
+                icon: '📡',
+                data: [
+                    { semester: '3rd Semester', subjects: [
+                        { name: 'Electronic Devices and Circuits', code: 'EC-301', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Digital System Design', code: 'EC-302', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Signals and Systems', code: 'EC-303', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '4th Semester', subjects: [
+                        { name: 'Analog Communication', code: 'EC-401', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Microprocessors & Microcontrollers', code: 'EC-402', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Control Systems', code: 'EC-403', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '5th Semester', subjects: [
+                        { name: 'Digital Communication', code: 'EC-501', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Electromagnetic Waves', code: 'EC-502', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'VLSI Design', code: 'EC-503', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '6th Semester', subjects: [
+                        { name: 'Digital Signal Processing', code: 'EC-601', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Computer Communication Networks', code: 'EC-602', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Antennas and Wave Propagation', code: 'EC-603', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '7th Semester', subjects: [
+                        { name: 'Optical Communication', code: 'EC-701', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Wireless Communication', code: 'EC-702', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '8th Semester', subjects: [
+                        { name: 'Major Project Work', code: 'EC-801', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Embedded Systems', code: 'EC-802', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]}
+                ]
+            },
+            'eee': {
+                title: 'Electrical and Electronics Engineering (EEE)',
+                icon: '⚡',
+                data: [
+                    { semester: '3rd Semester', subjects: [
+                        { name: 'Electrical Machines-I (DC Machines & Transformers)', code: 'EE-301', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Analog Electronic Circuits', code: 'EC-301', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Electrical & Electronic Measurements', code: 'EE-302', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '4th Semester', subjects: [
+                        { name: 'Electrical Machines-II (AC Machines)', code: 'EE-401', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Digital Electronics', code: 'EC-401', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Power Systems-I (Generation & Transmission)', code: 'EE-402', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '5th Semester', subjects: [
+                        { name: 'Control Systems', code: 'EE-501', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Power Electronics', code: 'EE-502', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Microprocessors and Microcontrollers', code: 'EE-503', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '6th Semester', subjects: [
+                        { name: 'Power Systems-II (Analysis & Stability)', code: 'EE-601', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'High Voltage Engineering', code: 'EE-602', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Switchgear and Protection', code: 'EE-6G03', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '7th Semester', subjects: [
+                        { name: 'Renewable Energy Systems', code: 'EE-701', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Industrial Automation & Control (PLC/SCADA)', code: 'EE-7T02', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]},
+                    { semester: '8th Semester', subjects: [
+                        { name: 'Major Project Work & Seminar', code: 'EE-801', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } },
+                        { name: 'Electric Energy Generation, Utilization & Conservation', code: 'EE-802', papers: { firstIA: 'Not Available', secondIA: 'Not Available', thirdIA: 'Not Available', final: 'Not Available' } }
+                    ]}
+                ]
+            }
+        };
+
+        let currentBranch = 'cse'; // Default branch
+        let currentSemestersData = allBranchesData[currentBranch].data;
+        const papersTypes = ['First IA', 'Second IA', 'Third IA', 'Final'];
+
+        // --- Core Functions ---
+
+        function renderSemesters() {
+            const container = document.getElementById('semestersContainer');
+            container.innerHTML = '';
+            currentSemestersData.forEach((sem, semIndex) => {
+                const semesterDiv = document.createElement('div');
+                semesterDiv.className = 'semester-section';
+                semesterDiv.innerHTML = `
+                    <div class="semester-header" onclick="toggleSemester(${semIndex})">
+                        <div class="semester-title">
+                            <span>📚</span>
+                            <span>${sem.semester}</span>
+                            <span class="subject-badge">${sem.subjects.length} subjects</span>
+                        </div>
+                        <span class="toggle-icon" id="toggle-${semIndex}">▼</span>
+                    </div>
+                    <div class="subjects-container" id="subjects-${semIndex}">
+                        ${sem.subjects.map((subject, subIndex) => `
+                            <div class="subject-card">
+                                <div class="subject-header" onclick="togglePapers(${semIndex}, ${subIndex})">
+                                    <div class="subject-name">
+                                        <span>${subject.name}</span>
+                                        <span class="subject-code">${subject.code}</span>
+                                    </div>
+                                    <span class="toggle-icon" id="toggle-${semIndex}-${subIndex}">▼</span>
+                                </div>
+                                <div class="papers-grid" id="papers-${semIndex}-${subIndex}">
+                                    <div class="papers-container">
+                                        ${papersTypes.map((paper, paperIndex) => {
+                                            const paperKey = ['firstIA', 'secondIA', 'thirdIA', 'final'][paperIndex];
+                                            const link = subject.papers[paperKey];
+                                            const isAvailable = link && link !== 'xxxxx' && link !== 'Not Available'; // Check for "Not Available" string too
+                                            const onclickAttr = isAvailable ? `onclick="window.open('${link}', '_blank')"` : '';
+                                            const disabledAttr = isAvailable ? '' : 'disabled';
+                                            return `
+                                            <div class="paper-card ${isAvailable ? 'available' : ''}">
+                                                <div class="paper-title">${paper}</div>
+                                                <div class="paper-status">${isAvailable ? 'Available' : 'No papers available'}</div>
+                                                <button class="download-btn" ${disabledAttr} ${onclickAttr}>
+                                                    <span>📥</span>
+                                                    <span>Download</span>
+                                                </button>
+                                            </div>
+                                        `}).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(semesterDiv);
+            });
+        }
+
+        function toggleSemester(index) {
+            const container = document.getElementById(`subjects-${index}`);
+            const icon = document.getElementById(`toggle-${index}`);
+            if (container) container.classList.toggle('open');
+            if (icon) icon.classList.toggle('open');
+        }
+
+        function togglePapers(semIndex, subIndex) {
+            const papers = document.getElementById(`papers-${semIndex}-${subIndex}`);
+            const icon = document.getElementById(`toggle-${semIndex}-${subIndex}`);
+            if (papers) papers.classList.toggle('open');
+            if (icon) icon.classList.toggle('open');
+        }
+
+        function searchSubjects() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const sections = document.querySelectorAll('.semester-section');
+            sections.forEach(section => {
+                const subjects = section.querySelectorAll('.subject-card');
+                let hasVisibleSubject = false;
+                subjects.forEach(subject => {
+                    const text = subject.textContent.toLowerCase();
+                    if (text.includes(input)) {
+                        subject.style.display = 'block';
+                        hasVisibleSubject = true;
+                    } else {
+                        subject.style.display = 'none';
+                    }
+                });
+                // Only hide the section if no subjects are visible AND search input is not empty
+                section.style.display = hasVisibleSubject || input === '' ? 'block' : 'none';
+            });
+        }
+
+        // --- Branch Loading Function ---
+
+        function loadBranch(branchKey) {
+            if (currentBranch === branchKey) return; // Prevent reloading same branch
+
+            currentBranch = branchKey;
+            currentSemestersData = allBranchesData[branchKey].data;
+
+            // Update Header
+            const branchInfo = allBranchesData[branchKey];
+            document.getElementById('branchTitle').innerHTML = `<span>${branchInfo.icon}</span>${branchInfo.title}`;
+
+            // Update Active Button Style
+            document.querySelectorAll('.branch-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const btnEl = document.getElementById(`btn-${branchKey}`);
+            if (btnEl) btnEl.classList.add('active');
+
+            // Re-render subjects and clear search
+            document.getElementById('searchInput').value = '';
+            renderSemesters();
+        }
+
+        // --- Theme Toggle ---
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const toggle = document.getElementById('themeToggle');
+            if (document.body.classList.contains('dark-mode')) {
+                toggle.textContent = '☀';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                toggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // --- Initial Load ---
+        window.onload = function() {
+            // Load theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('themeToggle').textContent = '☀';
+            }
+            // Load default branch (CSE)
+            renderSemesters();
+
+            // NOTE: contactLink href is intentionally set to '#' in the HTML.
+            // You can set the actual contact URL here dynamically if you prefer:
+            // document.getElementById('contactLink').href = 'mailto:you@example.com';
+        };
+    </script>
+</body>
+</html>
